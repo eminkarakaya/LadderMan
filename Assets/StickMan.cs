@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class StickMan : MonoBehaviour
 {
+    public int puan;
     bool isGameOver;
     bool isGameStarted;
     bool isGrounded;
@@ -49,36 +50,10 @@ public class StickMan : MonoBehaviour
         {
             StartCoroutine(FinishGame());
         }
-        // KUPUN ICINDEKI DEGERE ULASIP ONU ALICAK BU KDR IF KOYMAKTANSA DAHA IYI
-        // if(other.gameObject.name == "Cube100")
-        // {
-        //     Debug.Log("kekw");
-        //     StartCoroutine(FinishGame());
-        // }
-        // else if(other.gameObject.name == "Cube200")
-        // {
-        //     StartCoroutine(FinishGame());
-        // }
-        // else if(other.gameObject.name == "Cube400")
-        // {
-        //     StartCoroutine(FinishGame());
-        // }
-        // else if(other.gameObject.name == "Cube800")
-        // {
-        //     StartCoroutine(FinishGame());
-        // }
-        // else if(other.gameObject.name == "Cube1500")
-        // {
-        //     StartCoroutine(FinishGame());
-        // }
-        // else if(other.gameObject.name == "Cube3000")
-        // {
-        //     StartCoroutine(FinishGame());
-        // }
-        // else if(other.gameObject.name == "Cube9000")
-        // {
-        //     StartCoroutine(FinishGame());
-        // }
+        if(other.gameObject.tag == "FinishPoint")
+        {
+            puan += other.GetComponent<Puan>().puan;
+        }
     }
     private void OnTriggerStay(Collider other) {
         if(other.gameObject.tag == "merdiven")
