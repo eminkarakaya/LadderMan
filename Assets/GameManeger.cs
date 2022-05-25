@@ -6,11 +6,26 @@ using UnityEngine.SceneManagement;
 
 public class GameManeger : MonoBehaviour
 {
+    private int asynSceneIndex = 1;
     public Canvas startCanvas;
     public Canvas finishCanvas;
 
     public void NextLevelButton()
     {
-        SceneManager.LoadScene("SampleScene");
+        if(SceneManager.sceneCountInBuildSettings == asynSceneIndex+1)
+        {
+            SceneManager.UnloadSceneAsync(asynSceneIndex);
+            asynSceneIndex++;
+            SceneManager.LoadSceneAsync(asynSceneIndex, LoadSceneMode.Single);
+        }
+        else
+        {
+            if(SceneManager.sceneCount > 1)
+            {
+                SceneManager.UnloadSceneAsync(asynSceneIndex);
+                asynSceneIndex++;
+            }
+        }
+        SceneManager.LoadSceneAsync(asynSceneIndex,LoadSceneMode.Single);
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class StickMan : MonoBehaviour
 {
-    
     bool isGameOver;
     bool isGameStarted;
     bool isGrounded;
@@ -23,7 +22,6 @@ public class StickMan : MonoBehaviour
     public bool isCoolDown;
     public bool isTriggerWithLadder;
     public float isFirstCooldown = .5f;
-    
     public Canvas startCanvas;
     public GameObject finishCanvas;
     private void Start() 
@@ -38,6 +36,7 @@ public class StickMan : MonoBehaviour
         {
             laddersOnTheBack[laddersOnTheBackCount].SetActive(true);
             laddersOnTheBackCount++;
+            other.gameObject.SetActive(false);
         }
         if(isGameStarted)
         {
@@ -46,38 +45,40 @@ public class StickMan : MonoBehaviour
                 isGrounded = true;
             }
         }
-        
-        if(other.gameObject.name == "Cube100")
-        {
-            Debug.Log("kekw");
-            StartCoroutine(FinishGame());
-        }
-        else if(other.gameObject.name == "Cube200")
+        if(other.gameObject.tag == "Bosluk")
         {
             StartCoroutine(FinishGame());
         }
-        else if(other.gameObject.name == "Cube400")
-        {
-            StartCoroutine(FinishGame());
-        }
-        else if(other.gameObject.name == "Cube800")
-        {
-            StartCoroutine(FinishGame());
-        }
-        else if(other.gameObject.name == "Cube1500")
-        {
-            StartCoroutine(FinishGame());
-        }
-        else if(other.gameObject.name == "Cube3000")
-        {
-            StartCoroutine(FinishGame());
-        }
-        else if(other.gameObject.name == "Cube9000")
-        {
-            StartCoroutine(FinishGame());
-        }
-
-
+        // KUPUN ICINDEKI DEGERE ULASIP ONU ALICAK BU KDR IF KOYMAKTANSA DAHA IYI
+        // if(other.gameObject.name == "Cube100")
+        // {
+        //     Debug.Log("kekw");
+        //     StartCoroutine(FinishGame());
+        // }
+        // else if(other.gameObject.name == "Cube200")
+        // {
+        //     StartCoroutine(FinishGame());
+        // }
+        // else if(other.gameObject.name == "Cube400")
+        // {
+        //     StartCoroutine(FinishGame());
+        // }
+        // else if(other.gameObject.name == "Cube800")
+        // {
+        //     StartCoroutine(FinishGame());
+        // }
+        // else if(other.gameObject.name == "Cube1500")
+        // {
+        //     StartCoroutine(FinishGame());
+        // }
+        // else if(other.gameObject.name == "Cube3000")
+        // {
+        //     StartCoroutine(FinishGame());
+        // }
+        // else if(other.gameObject.name == "Cube9000")
+        // {
+        //     StartCoroutine(FinishGame());
+        // }
     }
     private void OnTriggerStay(Collider other) {
         if(other.gameObject.tag == "merdiven")
@@ -96,7 +97,6 @@ public class StickMan : MonoBehaviour
                 _anim.SetBool("havadaMi" ,false);
             }
         }
-        
     }
     private void OnTriggerExit(Collider other) {
         if(other.gameObject.tag == "merdiven")
@@ -105,7 +105,6 @@ public class StickMan : MonoBehaviour
             //isFirst = true;
             Debug.Log("OnTriggerExit");
             _anim.SetBool("havadaMi" ,true);
-            
         }
         if(other.gameObject.tag == "yol")
         {
@@ -127,7 +126,6 @@ public class StickMan : MonoBehaviour
             {
                 transform.Translate(Vector3.back*movementSpeed*1.5f + Vector3.up*movementSpeed*1.5f,Space.World);
             }
-            
         }
     }
     private void Update() {
