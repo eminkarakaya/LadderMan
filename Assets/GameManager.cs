@@ -6,10 +6,29 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    StickMan stickMan;
+    public Text scoreText;
+    public Text ladderText;
     private int asynSceneIndex = 0;
     public Canvas startCanvas;
     public Canvas finishCanvas;
 
+    void Start()
+    {
+        stickMan = GameObject.FindObjectOfType<StickMan>();
+        PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score"));
+        StickMan.WinEvent += SetScore;
+        StickMan.CollectLadder += SetLadderText;
+        StickMan.UseLadder += SetLadderText;
+    }
+    public void SetScore(GameObject other)
+    {
+        PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score")+ other.gameObject.GetComponent<Puan>().puan);
+    }
+    public void SetLadderText()
+    {
+        ladderText.text = stickMan.laddersOnTheBackCount.ToString();
+    }
     public void NextLevelButton()
     {
         if(SceneManager.sceneCountInBuildSettings == asynSceneIndex+1)

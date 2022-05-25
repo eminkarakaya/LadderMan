@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class StickMan : MonoBehaviour
 {
+    public static event System.Action GameOverEvent;
+    public static event System.Action<GameObject> WinEvent;
+    public static event System.Action CollectLadder;
+    public static event System.Action UseLadder;
     public int puan;
     bool isGameOver;
     bool isGameStarted;
@@ -27,16 +31,32 @@ public class StickMan : MonoBehaviour
     public GameObject finishCanvas;
     private void Start() 
     {
+        CollectLadder += Collect;
+        GameOverEvent += GameOver;
+        WinEvent += Win;
         DOTween.Init();
         _anim = transform.GetComponentInChildren<Animator>();
         laddersOnTheBackCount = 0;
     }
     
+    public void GameOver()
+    {
+        StartCoroutine(FinishGame());
+    }
+    public void Win(GameObject other)
+    {
+        puan += other.GetComponent<Puan>().puan;
+        StartCoroutine(FinishGame());
+    }
+    public void Collect()
+    {
+        laddersOnTheBack[laddersOnTheBackCount].SetActive(true);
+        laddersOnTheBackCount++;
+    }
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "yerdekiMerdiven")
         {
-            laddersOnTheBack[laddersOnTheBackCount].SetActive(true);
-            laddersOnTheBackCount++;
+            CollectLadder.Invoke();
             other.gameObject.SetActive(false);
         }
         if(isGameStarted)
@@ -48,12 +68,11 @@ public class StickMan : MonoBehaviour
         }
         if(other.gameObject.tag == "Bosluk" || other.gameObject.tag == "Barrier")
         {
-            StartCoroutine(FinishGame());
+            GameOverEvent.Invoke();
         }
         if(other.gameObject.tag == "FinishPoint")
         {
-            puan += other.GetComponent<Puan>().puan;
-            StartCoroutine(FinishGame());
+            WinEvent.Invoke(other.gameObject);
         }
         
     }
@@ -177,6 +196,7 @@ public class StickMan : MonoBehaviour
             createdLadders.Add(yeniMerdiven);
             laddersOnTheBack[laddersOnTheBackCount -1].SetActive(false);
             laddersOnTheBackCount--;
+            UseLadder.Invoke();
             isFirst = false;
         }
     }
