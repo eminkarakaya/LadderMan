@@ -53,6 +53,7 @@ public class StickMan : MonoBehaviour
         if(other.gameObject.tag == "FinishPoint")
         {
             puan += other.GetComponent<Puan>().puan;
+            StartCoroutine(FinishGame());
         }
     }
     private void OnTriggerStay(Collider other) {
@@ -119,7 +120,7 @@ public class StickMan : MonoBehaviour
             }
             if(isFirst)
             {
-                firstLadderPosition.position =  new Vector3(transform.localPosition.x,transform.localPosition.y-.1f,transform.localPosition.z - 0.2f);
+                firstLadderPosition.localPosition =  new Vector3(transform.localPosition.x,transform.localPosition.y-.1f,transform.localPosition.z - 0.2f);
             }
             else
             {

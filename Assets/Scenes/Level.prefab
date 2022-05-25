@@ -326,7 +326,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4354436474657164722}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.059512615, y: 0.77436465, z: 32.59277}
+  m_LocalPosition: {x: -1.99, y: -0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 584907529117441333}
@@ -687,6 +687,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 584907529117441333}
     m_Modifications:
+    - target: {fileID: 2657154000042934747, guid: 6e1246cea07e724428e9aa7dd4017b72, type: 3}
+      propertyPath: m_TagString
+      value: FinishPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 2657154000175703004, guid: 6e1246cea07e724428e9aa7dd4017b72, type: 3}
       propertyPath: m_Camera
       value: 
@@ -743,6 +747,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 4354436474995927172}
+    - target: {fileID: 2657154000741270221, guid: 6e1246cea07e724428e9aa7dd4017b72, type: 3}
+      propertyPath: m_TagString
+      value: FinishPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 2657154000953603036, guid: 6e1246cea07e724428e9aa7dd4017b72, type: 3}
+      propertyPath: m_TagString
+      value: FinishPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 2657154001032511924, guid: 6e1246cea07e724428e9aa7dd4017b72, type: 3}
       propertyPath: m_Camera
       value: 
@@ -751,14 +763,30 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 4354436474995927172}
+    - target: {fileID: 2657154001098410492, guid: 6e1246cea07e724428e9aa7dd4017b72, type: 3}
+      propertyPath: m_TagString
+      value: FinishPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 2657154001315110638, guid: 6e1246cea07e724428e9aa7dd4017b72, type: 3}
+      propertyPath: m_TagString
+      value: FinishPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 2657154001338919641, guid: 6e1246cea07e724428e9aa7dd4017b72, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 4354436474995927172}
+    - target: {fileID: 2657154001406477664, guid: 6e1246cea07e724428e9aa7dd4017b72, type: 3}
+      propertyPath: m_TagString
+      value: FinishPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 2657154001510252812, guid: 6e1246cea07e724428e9aa7dd4017b72, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 4354436474995927172}
+    - target: {fileID: 2657154001521575917, guid: 6e1246cea07e724428e9aa7dd4017b72, type: 3}
+      propertyPath: m_TagString
+      value: FinishPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 2657154001598229635, guid: 6e1246cea07e724428e9aa7dd4017b72, type: 3}
       propertyPath: m_Camera
       value: 

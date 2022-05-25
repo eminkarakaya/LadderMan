@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameManeger : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    private int asynSceneIndex = 1;
+    private int asynSceneIndex = 0;
     public Canvas startCanvas;
     public Canvas finishCanvas;
 
