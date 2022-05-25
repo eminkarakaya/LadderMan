@@ -875,6 +875,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrier
       objectReference: {fileID: 0}
+    - target: {fileID: 8117106078312598457, guid: 1644c475b3eb2a947842697aff6e9a4e, type: 3}
+      propertyPath: m_TagString
+      value: Barrier
+      objectReference: {fileID: 0}
     - target: {fileID: 8930093065348894979, guid: 1644c475b3eb2a947842697aff6e9a4e, type: 3}
       propertyPath: m_RootOrder
       value: 4

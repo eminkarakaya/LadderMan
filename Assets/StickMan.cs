@@ -46,7 +46,7 @@ public class StickMan : MonoBehaviour
                 isGrounded = true;
             }
         }
-        if(other.gameObject.tag == "Bosluk")
+        if(other.gameObject.tag == "Bosluk" || other.gameObject.tag == "Barrier")
         {
             StartCoroutine(FinishGame());
         }
@@ -55,6 +55,7 @@ public class StickMan : MonoBehaviour
             puan += other.GetComponent<Puan>().puan;
             StartCoroutine(FinishGame());
         }
+        
     }
     private void OnTriggerStay(Collider other) {
         if(other.gameObject.tag == "merdiven")

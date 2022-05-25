@@ -9,6 +9,7 @@ TagManager:
   - yol
   - Bosluk
   - FinishPoint
+  - Barrier
   layers:
   - Default
   - TransparentFX

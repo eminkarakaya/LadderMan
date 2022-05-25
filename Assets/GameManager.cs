@@ -15,17 +15,18 @@ public class GameManager : MonoBehaviour
         if(SceneManager.sceneCountInBuildSettings == asynSceneIndex+1)
         {
             SceneManager.UnloadSceneAsync(asynSceneIndex);
-            asynSceneIndex++;
+            asynSceneIndex = 0;
             SceneManager.LoadSceneAsync(asynSceneIndex, LoadSceneMode.Single);
         }
-        else
-        {
-            if(SceneManager.sceneCount > 1)
-            {
-                SceneManager.UnloadSceneAsync(asynSceneIndex);
-                asynSceneIndex++;
-            }
-        }
+        // else
+        // {
+        //     if(SceneManager.sceneCount > 1)
+        //     {
+        //         SceneManager.UnloadSceneAsync(asynSceneIndex);
+        //         
+        //     }
+        // }
+        asynSceneIndex++;
         SceneManager.LoadSceneAsync(asynSceneIndex,LoadSceneMode.Single);
     }
 }
