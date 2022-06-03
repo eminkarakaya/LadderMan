@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {   
+    [SerializeField] Text winText;
     int puan;
     public bool isGameOver;
     [SerializeField] _SceneManager _sceneManager;
@@ -13,7 +14,8 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public Text ladderText;
     public GameObject startCanvas;
-    public GameObject finishCanvas;
+    public GameObject winCanvas;
+    public GameObject loseCanvas;
 
     void OnEnable()
     {
@@ -51,30 +53,40 @@ public class GameManager : MonoBehaviour
         Debug.Log(_sceneManager.asynSceneIndex);
         if(SceneManager.sceneCountInBuildSettings == _sceneManager.asynSceneIndex+1)
         {
-            Debug.Log(" kekekekekkewwww");
             SceneManager.UnloadSceneAsync(_sceneManager.asynSceneIndex);
             _sceneManager.asynSceneIndex = 0;
             SceneManager.LoadSceneAsync(_sceneManager.asynSceneIndex, LoadSceneMode.Single);
             return;
         }
-            Debug.Log(" kekekekekkewwww 3131");
         _sceneManager.asynSceneIndex++;
         SceneManager.LoadSceneAsync(_sceneManager.asynSceneIndex,LoadSceneMode.Single);
     }
-    public IEnumerator FinishGame()
+    public void RetryBtn()
+    {
+        SceneManager.LoadSceneAsync(_sceneManager.asynSceneIndex,LoadSceneMode.Single);
+    }
+    public IEnumerator WinGame()
     {
         isGameOver = true;
         yield return new WaitForSeconds(1);
-        finishCanvas.SetActive(true);
+        winCanvas.SetActive(true);
+    }
+    public IEnumerator LoseGame()
+    {
+        isGameOver = true;
+        yield return new WaitForSeconds(1);
+        loseCanvas.SetActive(true);
     }
     public void GameOver()
     {
-        StartCoroutine(FinishGame());
+        StartCoroutine(LoseGame());
     }
     public void Win(GameObject other)
     {
+        Debug.Log(other.gameObject.name);
+        winText.text = "Kazanılan Puan : " + other.GetComponent<Puan>().puan.ToString();
         puan += other.GetComponent<Puan>().puan;
-        StartCoroutine(FinishGame());
+        StartCoroutine(WinGame());
     }
 }
    
