@@ -10,8 +10,6 @@ public class StickMan : MonoBehaviour
     public static event System.Action<GameObject> WinEvent;
     public static event System.Action CollectLadder;
     public static event System.Action UseLadder;
-    public int puan;
-    bool isGameOver;
     bool isGameStarted;
     bool hareketEdebilir = true;
     public bool isRight;
@@ -29,26 +27,26 @@ public class StickMan : MonoBehaviour
     public float isFirstCooldown = .5f;
     public Canvas startCanvas;
     public GameObject finishCanvas;
+    GameManager gameManager;
     void OnEnable()
     {
         CollectLadder += Collect;
-        GameOverEvent += GameOver;
-        WinEvent += Win;
+        
     }
     void OnDisable()
     {
         CollectLadder -= Collect;
-        GameOverEvent -= GameOver;
-        WinEvent -= Win;
+        
     }
     private void Start() 
     {
+        gameManager = FindObjectOfType<GameManager>();
         DOTween.Init();
         _anim = transform.GetComponentInChildren<Animator>();
         laddersOnTheBackCount = 0;
     }
     private void FixedUpdate() {
-        if(isGameStarted && !isGameOver)
+        if(isGameStarted && !gameManager.isGameOver)
         {
             if(!isTriggerWithLadder)
             {
@@ -73,8 +71,6 @@ public class StickMan : MonoBehaviour
 
         if(Physics.Raycast(rayPos,transform.TransformDirection(Vector3.down), out hit,Mathf.Infinity))
         {
-            Debug.Log("hit  " + hit.collider.name);
-            Debug.DrawLine(transform.position,transform.TransformDirection(Vector3.down),Color.red);
             
             // if(hit.collider.tag == "merdiven" | hit.collider.tag == "yol")
             // {
@@ -90,7 +86,6 @@ public class StickMan : MonoBehaviour
             {
                 isTriggerWithLadder = true;
                 // transform.position += (Vector3.back*movementSpeed);
-                Debug.Log("merdivene degıyor");
                 isFirst = false;
             }
             else
@@ -104,7 +99,7 @@ public class StickMan : MonoBehaviour
             startCanvas.enabled = false;
             isGameStarted = true;
         }
-        if(isGameStarted && !isGameOver)
+        if(isGameStarted && !gameManager.isGameOver)
         {
             Movement();
             if(Input.GetKey(KeyCode.Space) && isCoolDown && hareketEdebilir)
@@ -136,15 +131,7 @@ public class StickMan : MonoBehaviour
         }
     }
     
-    public void GameOver()
-    {
-        StartCoroutine(FinishGame());
-    }
-    public void Win(GameObject other)
-    {
-        puan += other.GetComponent<Puan>().puan;
-        StartCoroutine(FinishGame());
-    }
+    
     public void Collect()
     {
         laddersOnTheBack[laddersOnTheBackCount].SetActive(true);
@@ -167,12 +154,7 @@ public class StickMan : MonoBehaviour
         
     }
     
-    public IEnumerator FinishGame()
-    {
-        isGameOver = true;
-        yield return new WaitForSeconds(1);
-        finishCanvas.SetActive(true);
-    }
+    
     public void Movement()
     {
         if(Input.GetKeyDown(KeyCode.A) && hareketEdebilir)

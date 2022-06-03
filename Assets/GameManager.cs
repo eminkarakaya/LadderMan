@@ -5,22 +5,29 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
-{
+{   
+    int puan;
+    public bool isGameOver;
+    [SerializeField] _SceneManager _sceneManager;
     StickMan stickMan;
     public Text scoreText;
     public Text ladderText;
-    private int asynSceneIndex = 0;
-    public Canvas startCanvas;
-    public Canvas finishCanvas;
+    public GameObject startCanvas;
+    public GameObject finishCanvas;
 
     void OnEnable()
     {
+        _sceneManager = GameObject.FindObjectOfType<_SceneManager>();
+        StickMan.GameOverEvent += GameOver;
         StickMan.WinEvent += SetScore;
+        StickMan.WinEvent += Win;
         StickMan.CollectLadder += SetLadderText;
         StickMan.UseLadder += SetLadderText;
     }
     void OnDisable()
     {
+        StickMan.GameOverEvent -= GameOver;
+        StickMan.WinEvent -= Win;
         StickMan.WinEvent -= SetScore;
         StickMan.CollectLadder -= SetLadderText;
         StickMan.UseLadder -= SetLadderText;
@@ -29,7 +36,6 @@ public class GameManager : MonoBehaviour
     {
         stickMan = GameObject.FindObjectOfType<StickMan>();
         PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score"));
-        
     }
     public void SetScore(GameObject other)
     {
@@ -41,21 +47,34 @@ public class GameManager : MonoBehaviour
     }
     public void NextLevelButton()
     {
-        if(SceneManager.sceneCountInBuildSettings == asynSceneIndex+1)
+        _sceneManager = GameObject.FindObjectOfType<_SceneManager>();
+        Debug.Log(_sceneManager.asynSceneIndex);
+        if(SceneManager.sceneCountInBuildSettings == _sceneManager.asynSceneIndex+1)
         {
-            SceneManager.UnloadSceneAsync(asynSceneIndex);
-            asynSceneIndex = 0;
-            SceneManager.LoadSceneAsync(asynSceneIndex, LoadSceneMode.Single);
+            Debug.Log(" kekekekekkewwww");
+            SceneManager.UnloadSceneAsync(_sceneManager.asynSceneIndex);
+            _sceneManager.asynSceneIndex = 0;
+            SceneManager.LoadSceneAsync(_sceneManager.asynSceneIndex, LoadSceneMode.Single);
+            return;
         }
-        // else
-        // {
-        //     if(SceneManager.sceneCount > 1)
-        //     {
-        //         SceneManager.UnloadSceneAsync(asynSceneIndex);
-        //         
-        //     }
-        // }
-        asynSceneIndex++;
-        SceneManager.LoadSceneAsync(asynSceneIndex,LoadSceneMode.Single);
+            Debug.Log(" kekekekekkewwww 3131");
+        _sceneManager.asynSceneIndex++;
+        SceneManager.LoadSceneAsync(_sceneManager.asynSceneIndex,LoadSceneMode.Single);
+    }
+    public IEnumerator FinishGame()
+    {
+        isGameOver = true;
+        yield return new WaitForSeconds(1);
+        finishCanvas.SetActive(true);
+    }
+    public void GameOver()
+    {
+        StartCoroutine(FinishGame());
+    }
+    public void Win(GameObject other)
+    {
+        puan += other.GetComponent<Puan>().puan;
+        StartCoroutine(FinishGame());
     }
 }
+   
