@@ -13,13 +13,23 @@ public class GameManager : MonoBehaviour
     public Canvas startCanvas;
     public Canvas finishCanvas;
 
+    void OnEnable()
+    {
+        StickMan.WinEvent += SetScore;
+        StickMan.CollectLadder += SetLadderText;
+        StickMan.UseLadder += SetLadderText;
+    }
+    void OnDisable()
+    {
+        StickMan.WinEvent -= SetScore;
+        StickMan.CollectLadder -= SetLadderText;
+        StickMan.UseLadder -= SetLadderText;
+    }
     void Start()
     {
         stickMan = GameObject.FindObjectOfType<StickMan>();
         PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score"));
-        StickMan.WinEvent += SetScore;
-        StickMan.CollectLadder += SetLadderText;
-        StickMan.UseLadder += SetLadderText;
+        
     }
     public void SetScore(GameObject other)
     {

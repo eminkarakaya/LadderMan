@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class StickMan : MonoBehaviour
 {
+    RaycastHit hit;
     public static event System.Action GameOverEvent;
     public static event System.Action<GameObject> WinEvent;
     public static event System.Action CollectLadder;
@@ -12,7 +13,6 @@ public class StickMan : MonoBehaviour
     public int puan;
     bool isGameOver;
     bool isGameStarted;
-    bool isGrounded;
     bool hareketEdebilir = true;
     public bool isRight;
     private Animator _anim;
@@ -29,93 +29,32 @@ public class StickMan : MonoBehaviour
     public float isFirstCooldown = .5f;
     public Canvas startCanvas;
     public GameObject finishCanvas;
-    private void Start() 
+    void OnEnable()
     {
         CollectLadder += Collect;
         GameOverEvent += GameOver;
         WinEvent += Win;
+    }
+    void OnDisable()
+    {
+        CollectLadder -= Collect;
+        GameOverEvent -= GameOver;
+        WinEvent -= Win;
+    }
+    private void Start() 
+    {
         DOTween.Init();
         _anim = transform.GetComponentInChildren<Animator>();
         laddersOnTheBackCount = 0;
-    }
-    
-    public void GameOver()
-    {
-        StartCoroutine(FinishGame());
-    }
-    public void Win(GameObject other)
-    {
-        puan += other.GetComponent<Puan>().puan;
-        StartCoroutine(FinishGame());
-    }
-    public void Collect()
-    {
-        laddersOnTheBack[laddersOnTheBackCount].SetActive(true);
-        laddersOnTheBackCount++;
-    }
-    private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == "yerdekiMerdiven")
-        {
-            CollectLadder.Invoke();
-            other.gameObject.SetActive(false);
-        }
-        if(isGameStarted)
-        {
-            if(other.gameObject.tag == "yol")
-            {
-                isGrounded = true;
-            }
-        }
-        if(other.gameObject.tag == "Bosluk" || other.gameObject.tag == "Barrier")
-        {
-            GameOverEvent.Invoke();
-        }
-        if(other.gameObject.tag == "FinishPoint")
-        {
-            WinEvent.Invoke(other.gameObject);
-        }
-        
-    }
-    private void OnTriggerStay(Collider other) {
-        if(other.gameObject.tag == "merdiven")
-        {
-            isTriggerWithLadder = true;
-            // transform.position += (Vector3.back*movementSpeed);
-            Debug.Log("merdivene degıyor");
-            isFirst = false;
-        }
-        
-        if(other.gameObject.tag == "merdiven" | other.gameObject.tag == "yol")
-        {
-            if(isGameStarted)
-            {
-                _anim.SetBool("isGround" ,true);
-                _anim.SetBool("havadaMi" ,false);
-            }
-        }
-    }
-    private void OnTriggerExit(Collider other) {
-        if(other.gameObject.tag == "merdiven")
-        {
-            isTriggerWithLadder = false;
-            //isFirst = true;
-            Debug.Log("OnTriggerExit");
-            _anim.SetBool("havadaMi" ,true);
-        }
-        if(other.gameObject.tag == "yol")
-        {
-            isGrounded = false;
-        }
     }
     private void FixedUpdate() {
         if(isGameStarted && !isGameOver)
         {
             if(!isTriggerWithLadder)
             {
-                if(!isGrounded)
-                {
-                    transform.Translate(Vector3.down*movementSpeed*2);
-                }
+                
+                transform.Translate(Vector3.down*movementSpeed*2);
+                
                 transform.Translate(Vector3.back*movementSpeed,Space.World);
             }
             else
@@ -125,6 +64,41 @@ public class StickMan : MonoBehaviour
         }
     }
     private void Update() {
+
+        Vector3 rayPos = new Vector3(
+            rayPos.x = transform.position.x,
+            rayPos.x  = transform.position.y + .5f,
+            rayPos.x  = transform.position.z
+        );
+
+        if(Physics.Raycast(rayPos,transform.TransformDirection(Vector3.down), out hit,Mathf.Infinity))
+        {
+            Debug.Log("hit  " + hit.collider.name);
+            Debug.DrawLine(transform.position,transform.TransformDirection(Vector3.down),Color.red);
+            
+            // if(hit.collider.tag == "merdiven" | hit.collider.tag == "yol")
+            // {
+            //     if(isGameStarted)
+            //     {
+            //         _anim.SetBool("isGround" ,true);
+            //         _anim.SetBool("havadaMi" ,false);
+            //     }
+            // }
+            
+           
+            if(hit.collider.tag == "merdiven")
+            {
+                isTriggerWithLadder = true;
+                // transform.position += (Vector3.back*movementSpeed);
+                Debug.Log("merdivene degıyor");
+                isFirst = false;
+            }
+            else
+            {
+                isTriggerWithLadder = false;
+            }
+        }
+
         if(Input.anyKey)
         {
             startCanvas.enabled = false;
@@ -161,6 +135,38 @@ public class StickMan : MonoBehaviour
             }
         }
     }
+    
+    public void GameOver()
+    {
+        StartCoroutine(FinishGame());
+    }
+    public void Win(GameObject other)
+    {
+        puan += other.GetComponent<Puan>().puan;
+        StartCoroutine(FinishGame());
+    }
+    public void Collect()
+    {
+        laddersOnTheBack[laddersOnTheBackCount].SetActive(true);
+        laddersOnTheBackCount++;
+    }
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.tag == "yerdekiMerdiven")
+        {
+            CollectLadder.Invoke();
+            other.gameObject.SetActive(false);
+        }
+        if(other.gameObject.tag == "Bosluk" || other.gameObject.tag == "Barrier")
+        {
+            GameOverEvent.Invoke();
+        }
+        if(other.gameObject.tag == "FinishPoint")
+        {
+            WinEvent.Invoke(other.gameObject);
+        }
+        
+    }
+    
     public IEnumerator FinishGame()
     {
         isGameOver = true;
