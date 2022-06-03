@@ -195,6 +195,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RetryBtn
       objectReference: {fileID: 0}
+    - target: {fileID: 875527183, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 701.6581
+      objectReference: {fileID: 0}
+    - target: {fileID: 875527183, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 391.8555
+      objectReference: {fileID: 0}
+    - target: {fileID: 875527183, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 11.8513
+      objectReference: {fileID: 0}
+    - target: {fileID: 875527183, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 195.92776
+      objectReference: {fileID: 0}
     - target: {fileID: 584907529117441333, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
       propertyPath: m_RootOrder
       value: 3

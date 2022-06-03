@@ -456,6 +456,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RetryBtn
       objectReference: {fileID: 0}
+    - target: {fileID: 875527183, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 990.9036
+      objectReference: {fileID: 0}
+    - target: {fileID: 875527183, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 585.9896
+      objectReference: {fileID: 0}
+    - target: {fileID: 875527183, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 276.94556
+      objectReference: {fileID: 0}
+    - target: {fileID: 875527183, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 82.329895
+      objectReference: {fileID: 0}
+    - target: {fileID: 875527184, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
+      propertyPath: m_Text
+      value: "kazan\u0131lan puan : "
+      objectReference: {fileID: 0}
     - target: {fileID: 584907529117441333, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -498,6 +518,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 584907529117441333, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354436474138131295, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4354436475345805263, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
