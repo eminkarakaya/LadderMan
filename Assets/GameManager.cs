@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {   
+    public AudioClip winSound;
+    public float finishTime;
     [SerializeField] Text winText;
-    int puan;
+    int scoreEarned;
     public bool isGameOver;
     [SerializeField] _SceneManager _sceneManager;
     StickMan stickMan;
@@ -16,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject startCanvas;
     public GameObject winCanvas;
     public GameObject loseCanvas;
+    int currScore;
 
     void OnEnable()
     {
@@ -68,25 +72,43 @@ public class GameManager : MonoBehaviour
     public IEnumerator WinGame()
     {
         isGameOver = true;
-        yield return new WaitForSeconds(1);
         winCanvas.SetActive(true);
+        yield return new WaitForSeconds(finishTime);
+        winCanvas.transform.GetChild(0).gameObject.SetActive(true);
     }
     public IEnumerator LoseGame()
     {
         isGameOver = true;
-        yield return new WaitForSeconds(1);
         loseCanvas.SetActive(true);
+        yield return new WaitForSeconds(1);
+        loseCanvas.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void GameOver()
     {
         StartCoroutine(LoseGame());
     }
+    public void Score()
+    {
+        DOTween.To(GetScore,SetScore,scoreEarned,finishTime).SetEase(Ease.Unset);
+    }
+    int GetScore()
+    {
+        return currScore;
+    }
+    void SetScore(int value)
+    {
+        currScore += value;
+        winText.text = "Kazanılan Puan : " + value;
+    }
     public void Win(GameObject other)
     {
+        scoreEarned = other.GetComponent<Puan>().puan;
+        Score();
+        AudioSource.PlayClipAtPoint(winSound,Camera.main.transform.position);
         Debug.Log(other.gameObject.name);
-        winText.text = "Kazanılan Puan : " + other.GetComponent<Puan>().puan.ToString();
-        puan += other.GetComponent<Puan>().puan;
+        //winText.text = "Kazanılan Puan : " + other.GetComponent<Puan>().puan.ToString();
         StartCoroutine(WinGame());
     }
+
 }
    
