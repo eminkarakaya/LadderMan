@@ -507,6 +507,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4354436474042303994}
     - target: {fileID: 6121745049306776284, guid: b9ed782d3558ad644a05ca0b3fd372fa, type: 3}
+      propertyPath: winSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e081963e79c6ecc4ba1ea0f739361b79, type: 3}
+    - target: {fileID: 6121745049306776284, guid: b9ed782d3558ad644a05ca0b3fd372fa, type: 3}
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 1925360541}
@@ -10728,6 +10732,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 53358180}
+    - target: {fileID: 4354436475586122938, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
+      propertyPath: collectionSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d37d36532e4dc6a479587bb49783e0ec, type: 3}
+    - target: {fileID: 4354436475645135283, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5062217682029954309, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.69
@@ -10743,6 +10755,10 @@ PrefabInstance:
     - target: {fileID: 5551615102524366783, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283616178753013113, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8814849775309079151, guid: d08ad42ff7c7008409ded59f45ed39f5, type: 3}
       propertyPath: m_Name

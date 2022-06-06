@@ -8,7 +8,7 @@ using DG.Tweening;
 public class GameManager : MonoBehaviour
 {   
     public AudioClip winSound;
-    public float finishTime;
+    float finishTime = 1.5f;
     [SerializeField] Text winText;
     int scoreEarned;
     public bool isGameOver;

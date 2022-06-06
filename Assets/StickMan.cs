@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class StickMan : MonoBehaviour
 {
+    [SerializeField] AudioClip collectionSound;
     RaycastHit hit;
     public static event System.Action GameOverEvent;
     public static event System.Action<GameObject> WinEvent;
@@ -30,12 +31,13 @@ public class StickMan : MonoBehaviour
     GameManager gameManager;
     void OnEnable()
     {
-        CollectLadder += Collect;
-        
+        CollectLadder += Collect;  
+        WinEvent += Dance;
     }
     void OnDisable()
     {
         CollectLadder -= Collect;
+        WinEvent -= Dance;
         
     }
     private void Start() 
@@ -140,6 +142,7 @@ public class StickMan : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "yerdekiMerdiven")
         {
+            AudioSource.PlayClipAtPoint(collectionSound,Camera.main.transform.position);
             CollectLadder.Invoke();
             other.gameObject.SetActive(false);
         }
@@ -187,5 +190,9 @@ public class StickMan : MonoBehaviour
             UseLadder.Invoke();
             isFirst = false;
         }
+    }
+    void Dance(GameObject other)
+    {
+        _anim.SetTrigger("Dance");
     }
 }

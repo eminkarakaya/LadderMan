@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 2657154000042934744}
   - component: {fileID: 3859540316579384454}
   m_Layer: 0
-  m_Name: Cube3000
+  m_Name: Cube1500
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,7 +301,7 @@ Transform:
   m_Children:
   - {fileID: 2657154001338919642}
   m_Father: {fileID: 2657154000250269223}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2657154000042934742
 MeshFilter:
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13194672aefb9aa4394a7ac8dd9dca6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puan: 3000
+  puan: 1500
 --- !u!1 &2657154000175703008
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,8 +509,8 @@ Transform:
   - {fileID: 2657154000953603032}
   - {fileID: 2657154001315110634}
   - {fileID: 2657154001406477660}
-  - {fileID: 2657154001098410488}
   - {fileID: 2657154000042934743}
+  - {fileID: 2657154001098410488}
   - {fileID: 2657154001521575913}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1585,7 +1585,7 @@ GameObject:
   - component: {fileID: 2657154001098410493}
   - component: {fileID: 8994242248775142238}
   m_Layer: 0
-  m_Name: Cube1500
+  m_Name: Cube3000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1604,7 +1604,7 @@ Transform:
   m_Children:
   - {fileID: 2657154001598229636}
   m_Father: {fileID: 2657154000250269223}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2657154001098410491
 MeshFilter:
@@ -1680,7 +1680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13194672aefb9aa4394a7ac8dd9dca6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puan: 1500
+  puan: 3000
 --- !u!1 &2657154001315110638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1804,7 +1804,7 @@ GameObject:
   - component: {fileID: 2657154001338919640}
   - component: {fileID: 2657154001338919643}
   m_Layer: 5
-  m_Name: Skorlar 3000
+  m_Name: Skorlar 1500
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2224,7 +2224,7 @@ GameObject:
   - component: {fileID: 2657154001598229634}
   - component: {fileID: 2657154001598229637}
   m_Layer: 5
-  m_Name: Skorlar 1500
+  m_Name: Skorlar 3000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
